@@ -2,7 +2,10 @@ let currentStream = null;
 // let continueScanning = false;
 
 export function enumerateCameras() {
-    navigator.mediaDevices.enumerateDevices()
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(() => {
+            return navigator.mediaDevices.enumerateDevices();
+        })
         .then(devices => {
             const videoSelect = document.getElementById('videoSource') as HTMLSelectElement;
             videoSelect.innerHTML = '';
@@ -14,44 +17,40 @@ export function enumerateCameras() {
                     videoSelect.appendChild(option);
                 }
             });
+        })
+        .catch(error => {
+            console.error("Error enumerating devices: ", error);
+            alert("An error occurred while enumerating devices: " + error.message);
         });
 }
 
 export function startCamera(dotNetObject) {
     const video = document.getElementById('video') as HTMLVideoElement;
-    // const canvas = document.getElementById('canvas') as HTMLCanvasElement;
-    // const context = canvas.getContext('2d');
     const videoSelect = document.getElementById('videoSource') as HTMLSelectElement;
     const deviceId = videoSelect.value;
 
     if (currentStream) {
         stopCamera();
     }
-    
-    navigator.mediaDevices.getUserMedia({video: {deviceId: {exact: deviceId}}})
+
+    navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: deviceId } } })
         .then(stream => {
             currentStream = stream;
             console.log("Starting capture...");
             video.srcObject = stream;
             video.setAttribute("playsinline", "true");
             setTimeout(startDetection, 1000);
+        })
+        .catch(error => {
+            console.error("Error accessing camera: ", error);
+            if (error.name === 'NotAllowedError') {
+                alert("Camera access was denied. Please allow camera access to use this feature.");
+            } else if (error.name === 'NotFoundError') {
+                alert("No camera found. Please connect a camera and try again.");
+            } else {
+                alert("An error occurred while accessing the camera: " + error.message);
+            }
         });
-
-    // function tick() {
-    //     if (!continueScanning) return;
-    //     if (video.readyState === video.HAVE_ENOUGH_DATA) {
-    //         canvas.height = video.videoHeight;
-    //         canvas.width = video.videoWidth;
-    //         context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    //
-    //         // Capture the frame and send it to C#
-    //         const imageDataUrl = canvas.toDataURL('image/png');
-    //         const base64ImageData = imageDataUrl.split(',')[1];
-    //         dotNetObject.invokeMethodAsync('ProcessFrame', base64ImageData);
-    //     }
-    //
-    //     setTimeout(tick, 500);
-    // }
 
     function startDetection() {
         if (video.readyState === video.HAVE_ENOUGH_DATA) {
@@ -63,9 +62,9 @@ export function startCamera(dotNetObject) {
                 }
             ).catch(
                 e => {
-                    console.error(e)
+                    console.error(e);
                 }
-            )
+            );
         }
     }
 }

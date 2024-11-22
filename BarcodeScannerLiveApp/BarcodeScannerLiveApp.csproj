@@ -12,6 +12,10 @@
         <PackageReference Include="FreeSpire.Barcode" Version="6.6.0"/>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.0"/>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.0" PrivateAssets="all"/>
+        <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.7.1">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="SkiaSharp.Views.Blazor" Version="2.88.9"/>
         <PackageReference Include="ZXing.Net" Version="0.16.9"/>
         <PackageReference Include="ZXing.Net.Bindings.ImageSharp.V3" Version="0.16.16"/>

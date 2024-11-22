@@ -1,10 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.stopCamera = exports.startCamera = exports.enumerateCameras = void 0;
+exports.enumerateCameras = enumerateCameras;
+exports.startCamera = startCamera;
+exports.stopCamera = stopCamera;
 var currentStream = null;
 // let continueScanning = false;
 function enumerateCameras() {
-    navigator.mediaDevices.enumerateDevices()
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function () {
+        return navigator.mediaDevices.enumerateDevices();
+    })
         .then(function (devices) {
         var videoSelect = document.getElementById('videoSource');
         videoSelect.innerHTML = '';
@@ -16,13 +21,14 @@ function enumerateCameras() {
                 videoSelect.appendChild(option);
             }
         });
+    })
+        .catch(function (error) {
+        console.error("Error enumerating devices: ", error);
+        alert("An error occurred while enumerating devices: " + error.message);
     });
 }
-exports.enumerateCameras = enumerateCameras;
 function startCamera(dotNetObject) {
     var video = document.getElementById('video');
-    // const canvas = document.getElementById('canvas') as HTMLCanvasElement;
-    // const context = canvas.getContext('2d');
     var videoSelect = document.getElementById('videoSource');
     var deviceId = videoSelect.value;
     if (currentStream) {
@@ -35,22 +41,19 @@ function startCamera(dotNetObject) {
         video.srcObject = stream;
         video.setAttribute("playsinline", "true");
         setTimeout(startDetection, 1000);
+    })
+        .catch(function (error) {
+        console.error("Error accessing camera: ", error);
+        if (error.name === 'NotAllowedError') {
+            alert("Camera access was denied. Please allow camera access to use this feature.");
+        }
+        else if (error.name === 'NotFoundError') {
+            alert("No camera found. Please connect a camera and try again.");
+        }
+        else {
+            alert("An error occurred while accessing the camera: " + error.message);
+        }
     });
-    // function tick() {
-    //     if (!continueScanning) return;
-    //     if (video.readyState === video.HAVE_ENOUGH_DATA) {
-    //         canvas.height = video.videoHeight;
-    //         canvas.width = video.videoWidth;
-    //         context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    //
-    //         // Capture the frame and send it to C#
-    //         const imageDataUrl = canvas.toDataURL('image/png');
-    //         const base64ImageData = imageDataUrl.split(',')[1];
-    //         dotNetObject.invokeMethodAsync('ProcessFrame', base64ImageData);
-    //     }
-    //
-    //     setTimeout(tick, 500);
-    // }
     function startDetection() {
         if (video.readyState === video.HAVE_ENOUGH_DATA) {
             var reader = new ZXing.BrowserMultiFormatReader();
@@ -63,7 +66,6 @@ function startCamera(dotNetObject) {
         }
     }
 }
-exports.startCamera = startCamera;
 function stopCamera() {
     if (currentStream) {
         currentStream.getTracks().forEach(function (track) {
@@ -72,4 +74,4 @@ function stopCamera() {
         currentStream = null;
     }
 }
-exports.stopCamera = stopCamera;
+//# sourceMappingURL=camerascript.js.map
