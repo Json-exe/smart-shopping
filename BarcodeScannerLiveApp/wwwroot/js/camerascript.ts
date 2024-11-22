@@ -1,8 +1,9 @@
 let currentStream = null;
+
 // let continueScanning = false;
 
 export function enumerateCameras() {
-    navigator.mediaDevices.getUserMedia({ video: true })
+    navigator.mediaDevices.getUserMedia({video: true})
         .then(() => {
             return navigator.mediaDevices.enumerateDevices();
         })
@@ -33,7 +34,7 @@ export function startCamera(dotNetObject) {
         stopCamera();
     }
 
-    navigator.mediaDevices.getUserMedia({ video: { deviceId: { exact: deviceId } } })
+    navigator.mediaDevices.getUserMedia({video: {deviceId: {exact: deviceId}}})
         .then(stream => {
             currentStream = stream;
             console.log("Starting capture...");

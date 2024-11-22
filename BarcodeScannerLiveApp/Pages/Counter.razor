@@ -9,7 +9,6 @@
     <select id="videoSource"></select>
     <video id="video" style="max-width: 500px; max-height: 500px;"></video>
     <canvas id="canvas" style="max-width: 500px; max-height: 500px;"></canvas>
-    <img src="@_decodedImage" alt="decoded image" style="max-width: 500px; max-height: 500px;"/>
 </div>
 
 <h3>Barcode read: @_resultBarCode</h3>
@@ -19,7 +18,6 @@
 
 @code {
     private string _resultBarCode = string.Empty;
-    private string _decodedImage = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
