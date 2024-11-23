@@ -13,5 +13,6 @@ public sealed class OpenFoodFactsApiClient
     {
         var request = new HttpRequestMessage(HttpMethod.Get, $"/product/{barcode}");
         var response = await _httpClient.SendAsync(request, cancellationToken);
+        response.EnsureSuccessStatusCode();
     }
 }

@@ -4,8 +4,6 @@
         <TargetFramework>net9.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <WasmNativeStrip>true</WasmNativeStrip>
-        <WasmBuildNative>true</WasmBuildNative>
     </PropertyGroup>
 
     <ItemGroup>
@@ -18,7 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <TypeScriptCompile Include="wwwroot\js\camerascript.ts"/>
+      <ProjectReference Include="..\SmartShopping.Lib\SmartShopping.Lib.csproj" />
     </ItemGroup>
 
 </Project>

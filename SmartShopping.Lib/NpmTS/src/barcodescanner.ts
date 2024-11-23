@@ -1,6 +1,4 @@
-let currentStream = null;
-
-// let continueScanning = false;
+﻿let currentStream = null;
 
 export function enumerateCameras() {
     navigator.mediaDevices.getUserMedia({video: true})
@@ -55,17 +53,19 @@ export function startCamera(dotNetObject) {
 
     function startDetection() {
         if (video.readyState === video.HAVE_ENOUGH_DATA) {
-            const reader = new ZXing.BrowserMultiFormatReader();
-            reader.decodeFromVideoElement(video).then(
-                result => {
-                    stopCamera();
-                    dotNetObject.invokeMethodAsync('GetResult', result.getText());
-                }
-            ).catch(
-                e => {
-                    console.error(e);
-                }
-            );
+            import('@zxing/browser')
+                .then(d => {
+                    const reader = new d.BrowserMultiFormatReader();
+                    reader.decodeOnceFromVideoElement(video)
+                        .then(result => {
+                                stopCamera();
+                                dotNetObject.invokeMethodAsync('GetResult', result.getText());
+                            }
+                        ).catch(e => {
+                            console.error(e);
+                        }
+                    );
+                })
         }
     }
 }
@@ -78,3 +78,7 @@ export function stopCamera() {
         currentStream = null;
     }
 }
+
+(window as any).enumerateCameras = enumerateCameras;
+(window as any).startCamera = startCamera;
+(window as any).stopCamera = stopCamera;
