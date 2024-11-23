@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarcodeScannerTest", "BarcodeScannerTest\BarcodeScannerTest.csproj", "{A18EB43F-05C1-442C-AED0-9BA135F5668E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarcodeScannerLiveApp", "BarcodeScannerLiveApp\BarcodeScannerLiveApp.csproj", "{DE3CC585-25A8-462A-B46B-8817E8BDFEA8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartShopping.Lib", "SmartShopping.Lib\SmartShopping.Lib.csproj", "{08CE2917-6F35-4D02-B92B-CC4F64542ACC}"
@@ -12,10 +10,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A18EB43F-05C1-442C-AED0-9BA135F5668E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A18EB43F-05C1-442C-AED0-9BA135F5668E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A18EB43F-05C1-442C-AED0-9BA135F5668E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A18EB43F-05C1-442C-AED0-9BA135F5668E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DE3CC585-25A8-462A-B46B-8817E8BDFEA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DE3CC585-25A8-462A-B46B-8817E8BDFEA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE3CC585-25A8-462A-B46B-8817E8BDFEA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
