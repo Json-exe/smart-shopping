@@ -78,6 +78,7 @@ public enum Nutriscore
 
 internal sealed class IngredientJsonConverter : JsonConverter<Ingredient>
 {
+    // TODO: Need to improve this. An ingredient can have an ingredient as a sub type. Also is vegan and vegetarian correct to set to false?
     public override Ingredient Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         if (reader.TokenType is not JsonTokenType.StartObject)
