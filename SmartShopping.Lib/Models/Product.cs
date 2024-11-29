@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Globalization;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace SmartShopping.Lib.Models;
@@ -27,6 +28,28 @@ public sealed record Images
     public Dictionary<string, string> Display { get; init; } = [];
     public Dictionary<string, string> Small { get; init; } = [];
     public Dictionary<string, string> Thumb { get; init; } = [];
+
+    public string GetImage(ImageType type, CultureInfo culture)
+    {
+        return type switch
+        {
+            ImageType.Display => GetImage(Display, culture),
+            ImageType.Small => GetImage(Small, culture),
+            ImageType.Thumb => GetImage(Thumb, culture),
+            _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+        };
+    }
+
+    private static string GetImage(IDictionary<string, string> images, CultureInfo culture)
+    {
+        if (images.Count == 0) return string.Empty;
+        if (images.TryGetValue(culture.Name, out var image) || images.TryGetValue("en", out image))
+        {
+            return image;
+        }
+
+        return images.FirstOrDefault().Value ?? string.Empty;
+    }
 }
 
 public sealed record NutrientLevels
@@ -74,6 +97,13 @@ public enum Nutriscore
     C = 3,
     D = 4,
     E = 5
+}
+
+public enum ImageType
+{
+    Display,
+    Small,
+    Thumb
 }
 
 internal sealed class IngredientJsonConverter : JsonConverter<Ingredient>
