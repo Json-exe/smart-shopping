@@ -15,9 +15,9 @@ internal static class DependencyInjectionExtension
                 {
                     Host = "world.openfoodfacts.net",
                     Scheme = Uri.UriSchemeHttps,
-                    Path = "api/v2"
+                    Path = "api/v2/"
                 }.Uri;
-                client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("SmartShopping", "0.0.1"));
+                client.DefaultRequestHeaders.Add("User-Agent", "smartshopping/0.0.1 (lucaheitfeld@gmail.com)");
             })
             .Services;
     }

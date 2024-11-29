@@ -1,5 +1,7 @@
 ﻿@page "/counter"
+@using SmartShopping.Lib.Api
 @inject IJSRuntime JsRuntime
+@inject OpenFoodFactsApiClient Api
 
 <PageTitle>Scanner</PageTitle>
 
@@ -15,6 +17,7 @@
 
 <button class="btn btn-primary" @onclick="StartScanning">Start Scanning</button>
 <button class="btn btn-primary" @onclick="StopScanning">Stop Scanning</button>
+<button class="btn btn-primary" @onclick="TestApi">Test API</button>
 
 @code {
     private string _resultBarCode = string.Empty;
@@ -40,4 +43,10 @@
         _resultBarCode = result;
         await InvokeAsync(StateHasChanged);
     }
+
+    private async Task TestApi()
+    {
+        var result = await Api.GetProductInformation("3017620422003");
+    }
+
 }
