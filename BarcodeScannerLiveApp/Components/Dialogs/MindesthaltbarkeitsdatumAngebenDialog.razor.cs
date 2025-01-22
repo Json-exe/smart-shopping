@@ -3,12 +3,17 @@ using MudBlazor;
 
 namespace BarcodeScannerLiveApp.Components.Dialogs;
 
-public partial class MindesthaltbarkeitsdatumAngebenDialog : ComponentBase
+public partial class MindesthaltbarkeitsdatumAngebenDialog(MudDialogInstance mudDialog) : ComponentBase
 {
     [CascadingParameter]
-    private MudDialogInstance MudDialog { get; set; }
+    private MudDialogInstance MudDialog { get; set; } = mudDialog;
 
-    private void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    public DateTime Mindeshaltbarkeitsdatum { get; set; }
+
+    private void Submit()
+    {
+        MudDialog.Close(DialogResult.Ok(true));
+    }
 
     private void Cancel() => MudDialog.Cancel();
 }
