@@ -11,13 +11,11 @@
         <select id="videoSource"></select>
         <canvas id="canvas" style="max-width: 500px; max-height: 500px;"></canvas>
     </MudItem>
-    <MudItem xl="1" xs="1" sm="1" lg="1" md="1">
-        <MudButton class="btn btn-primary" @onclick="StartScanning">Start Scanning</MudButton>
-    </MudItem>
-    <MudItem xl="1" xs="1" sm="1" lg="1" md="1">
-        <MudButton class="btn btn-primary" @onclick="StopScanning">Stop Scanning</MudButton>
-    </MudItem>
-    <MudItem xl="1" xs="1" sm="1" lg="1" md="1">
-        <MudButton class="btn btn-primary" @onclick="GetTestProduct">Test Button</MudButton>
+    <MudItem xl="2" xs="2" sm="2" lg="2" md="2">
+        <MudButtonGroup Variant="Variant.Filled" Color="Color.Info">
+            <MudButton @onclick="StartScanning">Start Scanning</MudButton>
+            <MudButton @onclick="StopScanning">Stop Scanning</MudButton>
+            <MudButton @onclick="GetTestProduct">Test Button</MudButton>
+        </MudButtonGroup>
     </MudItem>
 </MudGrid>
