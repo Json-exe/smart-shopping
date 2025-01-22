@@ -1,0 +1,23 @@
+﻿@page "/scanner"
+
+<PageTitle>Scanner</PageTitle>
+
+<MudGrid Spacing="8">
+    <MudItem xl="12" xs="12" sm="12" lg="12" md="12">
+        <h1>Scanner</h1>
+    </MudItem>
+    <MudItem xl="12" xs="12" sm="12" lg="12" md="12">
+        <video id="video" style="max-width: 500px; max-height: 500px;"></video>
+        <select id="videoSource"></select>
+        <canvas id="canvas" style="max-width: 500px; max-height: 500px;"></canvas>
+    </MudItem>
+    <MudItem xl="1" xs="1" sm="1" lg="1" md="1">
+        <MudButton class="btn btn-primary" @onclick="StartScanning">Start Scanning</MudButton>
+    </MudItem>
+    <MudItem xl="1" xs="1" sm="1" lg="1" md="1">
+        <MudButton class="btn btn-primary" @onclick="StopScanning">Stop Scanning</MudButton>
+    </MudItem>
+    <MudItem xl="1" xs="1" sm="1" lg="1" md="1">
+        <MudButton class="btn btn-primary" @onclick="GetTestProduct">Test Button</MudButton>
+    </MudItem>
+</MudGrid>

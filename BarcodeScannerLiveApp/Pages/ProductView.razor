@@ -1,0 +1,20 @@
+﻿@page "/products"
+
+@using MudBlazor
+@using SmartShopping.Lib.Models
+
+<PageTitle>Produkte</PageTitle>
+
+<MudGrid Spacing="8">
+    <MudItem>
+        <MudText>Produkte</MudText>
+    </MudItem>
+    <MudItem xl="12">
+        <MudDataGrid T="BaseProduct">
+            <Columns>
+                <PropertyColumn Property="x => x.Product.ProductName" Title="Produktname"/>
+                <PropertyColumn Property="x => x.Product.NutriscoreGrade" Title="Nutriscore"/>
+            </Columns>
+        </MudDataGrid>
+    </MudItem>
+</MudGrid>
