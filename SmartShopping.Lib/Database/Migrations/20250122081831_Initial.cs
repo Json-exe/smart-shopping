@@ -18,6 +18,7 @@ namespace SmartShopping.Lib.Database.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Barcode = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
                     Name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    Nutriscore = table.Column<string>(type: "TEXT", nullable: false),
                     ExpirationDate = table.Column<DateTimeOffset>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>

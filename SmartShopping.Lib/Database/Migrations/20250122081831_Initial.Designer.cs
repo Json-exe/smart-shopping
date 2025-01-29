@@ -11,7 +11,7 @@ using SmartShopping.Lib.Database;
 namespace SmartShopping.Lib.Database.Migrations
 {
     [DbContext(typeof(SmartShoppingDb))]
-    [Migration("20250122072711_Initial")]
+    [Migration("20250122081831_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -37,6 +37,10 @@ namespace SmartShopping.Lib.Database.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nutriscore")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

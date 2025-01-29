@@ -36,6 +36,10 @@ namespace SmartShopping.Lib.Database.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Nutriscore")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.ToTable("Products");

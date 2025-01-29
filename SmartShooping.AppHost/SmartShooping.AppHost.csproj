@@ -16,7 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\BarcodeScannerLiveApp\BarcodeScannerLiveApp.csproj" />
+      <ProjectReference Include="..\SmartShopping.Client\SmartShopping.Client.csproj" />
     </ItemGroup>
 
 </Project>

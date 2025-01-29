@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmartShopping.Lib.Database.Models;
+using SQLitePCL;
 
 namespace SmartShopping.Lib.Database;
 
-internal sealed class SmartShoppingDb : DbContext
+public sealed class SmartShoppingDb : DbContext
 {
     public DbSet<Product> Products { get; set; }
 

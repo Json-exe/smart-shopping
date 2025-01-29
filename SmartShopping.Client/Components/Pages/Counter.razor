@@ -1,0 +1,25 @@
+﻿@page "/products"
+@using Bromix.MudBlazor.MaterialDesignIcons
+@inherits SmartShopping.Lib.ViewModel.ViewModelComponent<SmartShopping.Lib.ViewModel.ProductViewViewModel>
+
+<PageTitle>Produkte</PageTitle>
+
+<MudGrid Spacing="8">
+    <MudItem>
+        <MudText>Produkte</MudText>
+    </MudItem>
+    <MudItem xl="12">
+        <MudDataGrid T="Lib.Database.Models.Product" Items="@ViewModel.Products"
+                     Loading="@(!ViewModel.LoadCommand.CanExecute(null))">
+            <Columns>
+                <PropertyColumn Property="x => x.Name" Title="Produktname"/>
+                <PropertyColumn Property="x => x.ExpirationDate" Title="Ablaufdatum"/>
+                <PropertyColumn Property="x => x.Nutriscore" Title="Nutri-Score"/>
+                <TemplateColumn>
+                    <MudIconButton Icon="@MaterialDesignIcons.Normal.FoodOff" Color="Color.Primary"/>
+                    <MudIconButton Icon="@MaterialDesignIcons.Normal.TrashCan" Color="Color.Error"/>
+                </TemplateColumn>
+            </Columns>
+        </MudDataGrid>
+    </MudItem>
+</MudGrid>

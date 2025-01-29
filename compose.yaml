@@ -1,0 +1,6 @@
+﻿services:
+  smartshopping.client:
+    image: smartshopping.client
+    build:
+      context: .
+      dockerfile: SmartShopping.Client/Dockerfile

@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using SmartShopping.Lib.Models;
 
 namespace SmartShopping.Lib.Database.Models;
 
@@ -9,6 +11,7 @@ public sealed class Product
     public Guid Id { get; set; }
     public string Barcode { get; set; }
     public string Name { get; set; }
+    public Nutriscore Nutriscore { get; set; }
     public DateTimeOffset ExpirationDate { get; set; }
 }
 
@@ -21,5 +24,7 @@ file sealed class ProductConfiguration : IEntityTypeConfiguration<Product>
             .HasMaxLength(100);
         builder.Property(p => p.Barcode)
             .HasMaxLength(50);
+        builder.Property(p => p.Nutriscore)
+            .HasConversion<EnumToStringConverter<Nutriscore>>();
     }
 }
