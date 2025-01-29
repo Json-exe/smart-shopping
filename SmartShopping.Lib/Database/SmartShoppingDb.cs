@@ -10,7 +10,7 @@ public sealed class SmartShoppingDb : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlite("smart-shopping.db");
+        optionsBuilder.UseSqlite("Data Source=smart-shopping.db");
         base.OnConfiguring(optionsBuilder);
     }
 }

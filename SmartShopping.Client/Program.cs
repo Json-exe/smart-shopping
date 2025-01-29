@@ -22,18 +22,18 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-// await using var scope = app.Services.CreateAsyncScope();
-// try
-// {
-//     var db = await scope.ServiceProvider.GetRequiredService<IDbContextFactory<SmartShoppingDb>>()
-//         .CreateDbContextAsync();
-//     await db.Database.EnsureCreatedAsync();
-// }
-// catch (Exception e)
-// {
-//     Console.WriteLine(e);
-//     throw;
-// }
+await using var scope = app.Services.CreateAsyncScope();
+try
+{
+    var db = await scope.ServiceProvider.GetRequiredService<IDbContextFactory<SmartShoppingDb>>()
+        .CreateDbContextAsync();
+    await db.Database.MigrateAsync();
+}
+catch (Exception e)
+{
+    Console.WriteLine(e);
+    throw;
+}
 
 app.UseHttpsRedirection();
 
