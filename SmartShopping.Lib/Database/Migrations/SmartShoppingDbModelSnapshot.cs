@@ -28,7 +28,7 @@ namespace SmartShopping.Lib.Database.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTimeOffset>("ExpirationDate")
+                    b.Property<DateTime>("ExpirationDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")

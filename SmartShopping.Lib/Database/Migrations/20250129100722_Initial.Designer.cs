@@ -11,7 +11,7 @@ using SmartShopping.Lib.Database;
 namespace SmartShopping.Lib.Database.Migrations
 {
     [DbContext(typeof(SmartShoppingDb))]
-    [Migration("20250122081831_Initial")]
+    [Migration("20250129100722_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -31,7 +31,7 @@ namespace SmartShopping.Lib.Database.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTimeOffset>("ExpirationDate")
+                    b.Property<DateTime>("ExpirationDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
