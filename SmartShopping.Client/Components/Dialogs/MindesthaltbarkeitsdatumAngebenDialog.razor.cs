@@ -12,7 +12,7 @@ public partial class MindesthaltbarkeitsdatumAngebenDialog : ComponentBase
 
     private void Submit()
     {
-        MudDialog.Close(DialogResult.Ok(true));
+        MudDialog.Close(DialogResult.Ok(Mindeshaltbarkeitsdatum));
     }
 
     private void Cancel() => MudDialog.Cancel();

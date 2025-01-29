@@ -12,7 +12,7 @@ public sealed class Product
     public string Barcode { get; set; }
     public string Name { get; set; }
     public Nutriscore Nutriscore { get; set; }
-    public DateTimeOffset ExpirationDate { get; set; }
+    public DateTime ExpirationDate { get; set; }
 }
 
 file sealed class ProductConfiguration : IEntityTypeConfiguration<Product>
