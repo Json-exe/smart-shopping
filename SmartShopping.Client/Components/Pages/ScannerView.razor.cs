@@ -20,7 +20,7 @@ public partial class ScannerView
     private readonly OpenFoodFactsApiClient OpenFoodFactsApiClient;
 
     private string testcode = "4104450004048";
-    
+
     private IDbContextFactory<SmartShoppingDb> _dbContextFactory;
 
     public ScannerView(IJSRuntime jsRuntime, IDialogService dialogService,
@@ -71,15 +71,16 @@ public partial class ScannerView
     {
         var options = new DialogOptions { CloseOnEscapeKey = true };
 
-        var dialog = await DialogService.ShowAsync<MindesthaltbarkeitsdatumAngebenDialog>("Mindeshaltbarkeitsdatum festlegen",
+        var dialog = await DialogService.ShowAsync<MindesthaltbarkeitsdatumAngebenDialog>(
+            "Mindeshaltbarkeitsdatum festlegen",
             options);
 
         var result = await dialog.Result;
 
-        if (!result.Canceled && result.Data is DateTime Mindesthaltbarkeitsdatum)
+        if (result is { Canceled: false, Data: DateTime Mindesthaltbarkeitsdatum })
         {
             await using var db = await _dbContextFactory.CreateDbContextAsync();
-            
+
             db.Products.Add(new Product
             {
                 Barcode = product.Code,
@@ -87,7 +88,7 @@ public partial class ScannerView
                 Name = product.Product.ProductName,
                 Nutriscore = product.Product.NutriscoreGrade
             });
-            
+
             await db.SaveChangesAsync();
         }
     }

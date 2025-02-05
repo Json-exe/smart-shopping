@@ -8,11 +8,12 @@ public partial class MindesthaltbarkeitsdatumAngebenDialog : ComponentBase
     [CascadingParameter]
     private IMudDialogInstance MudDialog { get; set; }
 
-    public DateTime Mindeshaltbarkeitsdatum { get; set; }
+    private DateTime? Mindeshaltbarkeitsdatum { get; set; }
 
     private void Submit()
     {
-        MudDialog.Close(DialogResult.Ok(Mindeshaltbarkeitsdatum));
+        if (!Mindeshaltbarkeitsdatum.HasValue) return;
+        MudDialog.Close(DialogResult.Ok(Mindeshaltbarkeitsdatum.Value));
     }
 
     private void Cancel() => MudDialog.Cancel();

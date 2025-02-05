@@ -13,7 +13,7 @@ internal static class DependencyInjectionExtension
             {
                 client.BaseAddress = new UriBuilder
                 {
-                    Host = "world.openfoodfacts.net",
+                    Host = "world.openfoodfacts.org",
                     Scheme = Uri.UriSchemeHttps,
                     Path = "api/v2/"
                 }.Uri;
