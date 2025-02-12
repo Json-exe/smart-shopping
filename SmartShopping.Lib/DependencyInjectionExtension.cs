@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SmartShopping.Lib.Api;
 using SmartShopping.Lib.Database;
+using SmartShopping.Lib.Services;
 using SmartShopping.Lib.ViewModel;
 
 namespace SmartShopping.Lib;
@@ -11,6 +12,7 @@ public static class DependencyInjectionExtension
     {
         return services.AddApi()
             .AddDatabase()
-            .AddViewModel();
+            .AddViewModel()
+            .AddServices();
     }
 }

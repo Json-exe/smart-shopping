@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using SmartShopping.Lib;
 using SmartShopping.Lib.Api;
+using SmartShopping.Lib.Database.Models;
+using SmartShopping.Lib.Services;
 
 namespace SmartShopping.Tests;
 
@@ -10,7 +12,7 @@ public class UnitTest1
     private readonly ServiceProvider _services = new ServiceCollection()
         .AddLib()
         .BuildServiceProvider();
-    
+
     [Fact]
     public async Task TestOpenFoodFactsApiAndJsonDeserialization()
     {
@@ -20,5 +22,16 @@ public class UnitTest1
         response.Product.ProductName.Should().Contain("Nutella");
         response.Product.Ingredients.Should().NotBeEmpty();
         response.Status.Should().Be(1);
+    }
+
+    [Fact(Skip = "")]
+    public async Task TestAlertzyNotification()
+    {
+        var notificationService = _services.GetRequiredService<NotificationService>();
+        await notificationService.SendProductExpirationNotification(new Product
+        {
+            Name = "Nutella",
+            ExpirationDate = DateTime.Now.AddDays(5)
+        });
     }
 }
