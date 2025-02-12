@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartShopping.Lib.Database;
 
@@ -10,9 +11,11 @@ using SmartShopping.Lib.Database;
 namespace SmartShopping.Lib.Database.Migrations
 {
     [DbContext(typeof(SmartShoppingDb))]
-    partial class SmartShoppingDbModelSnapshot : ModelSnapshot
+    [Migration("20250212094520_AddedLastReminderDate")]
+    partial class AddedLastReminderDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.2");

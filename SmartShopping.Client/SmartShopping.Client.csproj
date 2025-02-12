@@ -19,6 +19,10 @@
 
     <ItemGroup>
       <PackageReference Include="Bromix.MudBlazor.MaterialDesignIcons" Version="7.4.47.56" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
       <PackageReference Include="MudBlazor" Version="8.1.0" />
     </ItemGroup>
 
