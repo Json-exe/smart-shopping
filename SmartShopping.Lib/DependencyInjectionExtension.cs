@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SmartShopping.Lib.Api;
+using SmartShopping.Lib.BackgroundServices;
 using SmartShopping.Lib.Database;
 using SmartShopping.Lib.Services;
 using SmartShopping.Lib.ViewModel;
@@ -13,6 +14,7 @@ public static class DependencyInjectionExtension
         return services.AddApi()
             .AddDatabase()
             .AddViewModel()
-            .AddServices();
+            .AddServices()
+            .AddHostedService<TimedCheckExpirationDate>();
     }
 }

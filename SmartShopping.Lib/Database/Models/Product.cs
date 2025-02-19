@@ -13,7 +13,7 @@ public sealed class Product
     public string Name { get; set; }
     public Nutriscore Nutriscore { get; set; }
     public DateTime ExpirationDate { get; set; }
-    public DateTime LastReminderDate { get; set; }
+    public DateTime? LastReminderDate { get; set; } = null;
 }
 
 file sealed class ProductConfiguration : IEntityTypeConfiguration<Product>
