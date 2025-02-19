@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SmartShopping.Lib;
 using SmartShopping.Lib.Api;
@@ -12,6 +13,8 @@ public class UnitTest1
     private readonly ServiceProvider _services = new ServiceCollection()
         .AddLib()
         .BuildServiceProvider();
+    
+    
 
     [Fact]
     public async Task TestOpenFoodFactsApiAndJsonDeserialization()

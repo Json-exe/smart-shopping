@@ -3,6 +3,7 @@ using MudBlazor.Services;
 using SmartShopping.Client.Components;
 using SmartShopping.Lib;
 using SmartShopping.Lib.Database;
+using SmartShopping.Lib.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddLib();
 builder.Services.AddMudServices();
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection(AppSettings.KeyIdentifier));
 
 var app = builder.Build();
 
