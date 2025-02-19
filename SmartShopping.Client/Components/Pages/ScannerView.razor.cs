@@ -77,14 +77,14 @@ public partial class ScannerView
 
         var result = await dialog.Result;
 
-        if (result is { Canceled: false, Data: DateTime Mindesthaltbarkeitsdatum })
+        if (result is { Canceled: false, Data: DateTime mindesthaltbarkeitsdatum })
         {
             await using var db = await _dbContextFactory.CreateDbContextAsync();
 
             db.Products.Add(new Product
             {
                 Barcode = product.Code,
-                ExpirationDate = Mindesthaltbarkeitsdatum,
+                ExpirationDate = mindesthaltbarkeitsdatum,
                 Name = product.Product.ProductName,
                 Nutriscore = product.Product.NutriscoreGrade
             });

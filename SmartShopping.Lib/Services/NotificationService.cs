@@ -1,13 +1,17 @@
-﻿using SmartShopping.Lib.Database.Models;
+﻿using Microsoft.Extensions.Options;
+using SmartShopping.Lib.Models;
+using Product = SmartShopping.Lib.Database.Models.Product;
 
 namespace SmartShopping.Lib.Services;
 
 public sealed class NotificationService
 {
     private readonly HttpClient _notificationClient;
+    private readonly AppSettings _appSettings;
 
-    public NotificationService()
+    public NotificationService(IOptions<AppSettings> options)
     {
+        _appSettings = options.Value;
         _notificationClient = new HttpClient();
         _notificationClient.BaseAddress = new Uri("https://alertzy.app/");
     }
@@ -20,11 +24,11 @@ public sealed class NotificationService
         response.EnsureSuccessStatusCode();
     }
 
-    private static FormUrlEncodedContent CreateProductNotificationContent(Product product)
+    private FormUrlEncodedContent CreateProductNotificationContent(Product product)
     {
         var content = new Dictionary<string, string>
         {
-            { "accountKey", "" },
+            { "accountKey", _appSettings.NotificationKey },
             { "title", product.Name + " is expiring soon" }
         };
 
